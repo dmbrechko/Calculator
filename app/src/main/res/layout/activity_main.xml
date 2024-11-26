@@ -7,12 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/titleTV"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/height"
-        android:text="@string/time_calculator"
-        android:textSize="22sp"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:logo="@drawable/ic_calculator_40"
+        android:background="@color/green_dark"
+        app:title="@string/time_calculator"
+        app:subtitle="@string/its_simple_time_calculator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,6 +48,7 @@
         android:id="@+id/plusBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/green_light"
         android:text="@string/plus"
         android:layout_marginTop="@dimen/margin_top"
         app:layout_constraintEnd_toStartOf="@+id/minusBTN"
@@ -56,6 +60,7 @@
         android:id="@+id/minusBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/green_light"
         android:text="@string/minus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -68,7 +73,7 @@
         android:layout_height="@dimen/height"
         android:layout_marginTop="@dimen/margin_top"
         android:gravity="center"
-        android:text=""
+        android:text="@string/result"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

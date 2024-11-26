@@ -4,4 +4,11 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="wrong_input_try_again">Wrong input, try again</string>
+    <string name="its_simple_time_calculator">Its simple time calculator</string>
+    <string name="result">Result: </string>
+    <string name="result_placeholder">Result: %s</string>
+    <string name="clear">Clear</string>
+    <string name="exit">Exit</string>
+    <string name="data_cleared">Data cleared</string>
+    <string name="app_closed">App closed</string>
 </resources>

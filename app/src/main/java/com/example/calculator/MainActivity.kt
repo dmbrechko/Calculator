@@ -1,8 +1,12 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,12 +27,39 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         binding.apply {
+            setSupportActionBar(toolbar)
             plusBTN.setOnClickListener {
                 checkAndGo(this) { first, second -> first + second}
             }
             minusBTN.setOnClickListener {
                 checkAndGo(this) { first, second -> first - second}
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.clear -> {
+                binding.apply {
+                    firstOperandET.text.clear()
+                    secondOperandET.text.clear()
+                    resultTV.text = getString(R.string.result)
+                    resultTV.setTextColor(getColor(R.color.black))
+                }
+                makeToast(R.string.data_cleared)
+                true
+            }
+            R.id.exit -> {
+                makeToast(getString(R.string.app_closed))
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -75,12 +106,23 @@ class MainActivity : AppCompatActivity() {
             val first = firstOperandET.text.toString()
             val second = secondOperandET.text.toString()
             if (checkInput(first) && checkInput(second)) {
-                resultTV.text = calculate(first, second, op)
+                val result = String.format(getString(R.string.result_placeholder), calculate(first, second, op))
+                resultTV.text = result
+                resultTV.setTextColor(getColor(R.color.red_dark))
+                makeToast(result)
             } else {
                 Toast.makeText(this@MainActivity,
                     getString(R.string.wrong_input_try_again), Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun makeToast(@StringRes strId: Int) {
+        Toast.makeText(this, getString(strId), Toast.LENGTH_LONG).show()
+    }
+
+    private fun makeToast(str: String) {
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show()
     }
 }
 
